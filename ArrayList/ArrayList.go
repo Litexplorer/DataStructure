@@ -34,3 +34,9 @@ func NewArrayList() *ArrayList {
 func (list *ArrayList) String() string {
 	return fmt.Sprint(list.dataStorage)
 }
+
+// 追加值
+func (list *ArrayList) Append(newVal interface{}) {
+	list.dataStorage = append(list.dataStorage, newVal)
+	list.theSize++
+}
