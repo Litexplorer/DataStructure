@@ -1,6 +1,9 @@
 package main
 
-import "./ArrayList"
+import (
+	"./ArrayList"
+	"fmt"
+)
 
 func main() {
 	list := ArrayList.NewArrayList()
@@ -10,5 +13,12 @@ func main() {
 	list.Append("4")
 	list.Append("5")
 	list.Append("6")
-	println(list.String())
+	fmt.Println(list.String())
+	fmt.Printf("当前数组的长度是：【%d】\n", list.Size())
+
+	//
+	for i := 0; i < list.Size(); i++ {
+		element, _ := list.Get(i)
+		fmt.Printf("数组的第【%d】个元素是【%v】\n", i, element)
+	}
 }

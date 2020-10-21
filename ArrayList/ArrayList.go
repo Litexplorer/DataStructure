@@ -1,11 +1,14 @@
 package ArrayList
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // 定义接口
 type List interface {
-	Size()                                // 获取大小
-	Get(index int)                        // 抓取第几个元素
+	Size() int                               // 获取大小
+	Get(index int) (interface{}, error)                 // 抓取第几个元素
 	Set(index int, newVal interface{})    // 修改指定位置的元素
 	Insert(index int, newVal interface{}) // 在第几个位置插入元素
 	Append(newVal interface{})            // 追加元素
@@ -39,4 +42,16 @@ func (list *ArrayList) String() string {
 func (list *ArrayList) Append(newVal interface{}) {
 	list.dataStorage = append(list.dataStorage, newVal)
 	list.theSize++
+}
+
+// 抓取第几个元素
+func (list *ArrayList) Get(index int) (interface{}, error){
+	if index < 0 || index > list.theSize {
+		return nil, errors.New("索引越界")
+	}
+	return list.dataStorage[index], nil
+}
+// 获取数组大小
+func (list *ArrayList) Size() int {
+	return list.theSize
 }
